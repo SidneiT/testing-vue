@@ -29,7 +29,6 @@
   },
   "eslintConfig": {
     "root": true,
-    "no-debugger": false,
     "env": {
       "node": true,
       "jest": true
