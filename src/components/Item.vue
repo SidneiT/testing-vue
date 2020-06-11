@@ -1,7 +1,9 @@
 <template>
   <li>
     <a :href="item.url">{{ item.title }}</a>
-    {{ item.url }}
+    <span>{{ item.url }}</span>
+    <span>{{ item.score }}</span>
+    <span>{{ item.author }}</span>
   </li>
 </template>
 <script>

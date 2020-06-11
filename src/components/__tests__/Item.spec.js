@@ -3,7 +3,7 @@ import Item from '../Item.vue'
 import { mount, shallowMount } from '@vue/test-utils'
 
 describe('Item.vue', () => {
-  test('render items.url', () => {
+  test('render item.url', () => {
     const item = {
       url: 10
     }
@@ -26,5 +26,19 @@ describe('Item.vue', () => {
 
     expect(a.text()).toBe(item.title)
     expect(a.attributes('href')).toBe(item.url)
+  })
+
+  test('render item.author and item.author', () => {
+    const item = {
+      author: 'Joseph',
+      score: 32
+    }
+
+    const wrapper = shallowMount(Item, {
+      propsData: { item }
+    })
+
+    expect(wrapper.text()).toContain(item.author)
+    expect(wrapper.text()).toContain(item.score)
   })
 })
