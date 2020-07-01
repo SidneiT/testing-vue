@@ -1,11 +1,11 @@
 /* eslint-disable no-debugger */
 import Item from '../Item.vue'
-import { mount, shallowMount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
 describe('Item.vue', () => {
   test('render item.url', () => {
     const item = {
-      url: 10
+      url: 100
     }
 
     const wrapper = shallowMount(Item, {
@@ -15,7 +15,7 @@ describe('Item.vue', () => {
     return expect(wrapper.text()).toContain(item.url)
   })
 
-  test('renders a link to the item.ulr with item.title as text', () => {
+  test('renders a link to the item.url with item.title as text', () => {
     const item = {
       url: 'http://some-url.com',
       title: 'some title'
