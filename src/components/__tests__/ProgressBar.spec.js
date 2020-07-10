@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import { shallowMount } from '@vue/test-utils'
 import ProgressBar from '../ProgressBar.vue'
 
@@ -65,12 +64,28 @@ describe('ProgressBar.vue', () => {
     expect(wrapper.element.style.width).toBe('50%')
   })
 
-  test('clears timer when finish is called', () => {
+  test('clears timer when finish is called', async () => {
     jest.spyOn(window, 'clearInterval')
     setInterval.mockReturnValue(123)
     const wrapper = shallowMount(ProgressBar)
-    wrapper.vm.start()
-    wrapper.vm.finish()
+    await wrapper.vm.start()
+    await wrapper.vm.finish()
     expect(window.clearInterval).toHaveBeenCalledWith(123)
+  })
+
+  test('has error class when fail is called', async () => {
+    expect.assertions(1)
+    const wrapper = shallowMount(ProgressBar)
+    await wrapper.vm.start()
+    await wrapper.vm.fail()
+    expect(wrapper.classes()).toContain('error')
+  })
+
+  test('set width to 100% after fail is called', async () => {
+    expect.assertions(1)
+    const wrapper = shallowMount(ProgressBar)
+    await wrapper.vm.start()
+    await wrapper.vm.fail()
+    expect(wrapper.element.style.width).toBe('100%')
   })
 })
